@@ -1,0 +1,30 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Microblog</title>
+      {% else %}
+      <title>Welcome to Microblog</title>
+      {% endif %}
+      <style>
+	.block_size{ padding-right:1em; }
+      </style>
+    </head>
+    <body>
+        <div>
+	Microblog: 
+	<a href="{{url_for('index')}}" class = "block_size">Home</a>
+	<a href = "{{url_for('login')}}">Log In</a>
+	</div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{message}} </li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+	{% block content %}{% endblock %}
+    </body>
+</html>

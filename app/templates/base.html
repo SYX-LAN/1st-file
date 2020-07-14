@@ -14,12 +14,16 @@
 	Microblog: 
 	<a href="{{url_for('index')}}" class = "block_size">Home</a>
 	{% if current_user.is_anonymous %}
-	<a href = "{{url_for('login')}}">Log In</a>
+	<a href = "{{url_for('login')}}" class = "block_size">Log In</a>
 	{% else %}
+	<a href = "{{url_for('user', username = current_user.username)}}" class = "block_size"> Profile </a>
 	<a href = "{{url_for('logout')}}">Log Out</a>
 	{% endif %}
+	{% if user == current_user %}
+	<a href = "{{url_for('edit_profile')}}" class = "block_size"> Edit Profile</a>
+	{% endif %}
 	</div>
-        <hr>
+        <hr> 
         {% with messages = get_flashed_messages() %}
 	{% if messages %}
 	<ul>

@@ -13,11 +13,12 @@
         <div>
 	Microblog: 
 	<a href="{{url_for('index')}}" class = "block_size">Home</a>
+	<a href="{{url_for('explore')}}" class = "block_size">Explore</a>
 	{% if current_user.is_anonymous %}
 	<a href = "{{url_for('login')}}" class = "block_size">Log In</a>
 	{% else %}
 	<a href = "{{url_for('user', username = current_user.username)}}" class = "block_size"> Profile </a>
-	<a href = "{{url_for('logout')}}">Log Out</a>
+	<a href = "{{url_for('logout')}}" class = "block_size">Log Out</a>
 	{% endif %}
 	{% if user == current_user %}
 	<a href = "{{url_for('edit_profile')}}" class = "block_size"> Edit Profile</a>

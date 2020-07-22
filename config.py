@@ -9,10 +9,11 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 #     邮件服务器信息配置
-    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = '1196081136@qq.com'
+    MAIL_PASSWORD = 'bdrnzgxjbylqiebh'
     ADMINS = ['1196081136@qq.com']
-    POSTS_PER_PAGE = 3
+    
+    POSTS_PER_PAGE = 10

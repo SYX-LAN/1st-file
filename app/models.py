@@ -1,9 +1,10 @@
-from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import login
 from flask_login import UserMixin
 from hashlib import md5
+from time import time
+import jwt
+from app import app,db,login
 
 
 # 表内的2个实例都是关联到同一个类，被称为自引用表，这里没和user，posts表一样声明成模型  因为这是一个除了外键没有其他数据的辅助表，所以我创建它的时候没有关联到模型类。
@@ -69,6 +70,24 @@ class User(UserMixin,db.Model):
 #   校对密码是否正确
     def check_password(self, password):   
         return check_password_hash(self.password_hash, password)
+    
+#     以字符串形式生成一个令牌
+    def get_reset_password_token(self, expires_in = 600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            app.config['SECRET_KEY'], algorithm = 'HS256').decode('utf-8')
+    
+    
+    #静态方法可以直接从类外调用     
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            #解码该token，过期或者出错就引发异常             
+            id = jwt.decode(token, app.config['SECRET_KEY'], algorithms = ['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)
+        
         
         
     def __repr__(self):

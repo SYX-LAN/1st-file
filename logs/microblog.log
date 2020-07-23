@@ -27,3 +27,7 @@ Traceback (most recent call last):
   File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/fields/core.py", line 376, in bind
     return self.field_class(*self.args, **kw)
 TypeError: __init__() got an unexpected keyword argument 'validator'
+2020-07-23 16:47:54,109 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
+2020-07-23 16:50:25,823 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
+2020-07-23 17:02:20,983 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
+2020-07-23 17:38:15,795 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:58]

@@ -12,14 +12,10 @@ class Config(object):
     MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
     MAIL_USE_TLS = True
-<<<<<<< HEAD
+
     MAIL_USERNAME = ''
     MAIL_PASSWORD = ''
     ADMINS = ['']
-=======
-    MAIL_USERNAME = ''
-    MAIL_PASSWORD = ''
-    ADMINS = ['']
->>>>>>> e43718864dab4b3a440314b5dce48c286e2cfafa
+
     
     POSTS_PER_PAGE = 10

@@ -8,14 +8,19 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from flask_mail import Mail    
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 # 使用@login_required装饰器可以防止匿名用户访问，保护视图函数
 login = LoginManager(app)
 login.login_view = 'login'
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+
+# Flask-Moment与moment.js一起工作，因此应用的所有模板都必须包含moment.js。为了确保该库始终可用，我将把它添加到基础模板中，可以通过两种方式完成。 最直接的方法是显式添加一个<script>标签来引入库，但Flask-Moment的moment.include_moment()函数可以更容易地实现它，它直接生成了一个<script>标签并在其中包含moment.js：
+moment = Moment(app)
 
 # db对象表示数据库, 数据库应用和迁移是一个实例
 db = SQLAlchemy(app)

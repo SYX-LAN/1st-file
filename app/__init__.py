@@ -6,23 +6,16 @@ from flask_login import LoginManager
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
-from flask_mail import Mail        
+from flask_mail import Mail    
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config.from_object(Config)
 # 使用@login_required装饰器可以防止匿名用户访问，保护视图函数
 login = LoginManager(app)
 login.login_view = 'login'
-
-
-
-# app.config['MAIL_SERVER'] = 'smtp.qq.com'
-# app.config['MAIL_PORT'] = 587
-# app.config['MAIL_USE_TLS'] = True
-# app.config['MAIL_USERNAME'] = '1196081136@qq.com' #邮箱账号
-# app.config['MAIL_PASSWORD'] = 'bdrnzgxjbylqiebh'  #QQ邮箱授权码
-
 mail = Mail(app)
+bootstrap = Bootstrap(app)
 
 # db对象表示数据库, 数据库应用和迁移是一个实例
 db = SQLAlchemy(app)

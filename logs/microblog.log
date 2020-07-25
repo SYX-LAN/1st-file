@@ -1,33 +1,127 @@
-2020-07-23 00:23:22,501 ERROR: Exception on /reset_password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNldF9wYXNzd29yZCI6MywiZXhwIjoxNTk1NDM1NTM0LjcwNzkyNjN9.otLWpNQnNQ_n7e5tVbQLOZV8w2DsJcfhOZBgovRl5W8 [GET] [in /home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-07-25 14:14:22,933 ERROR: Exception on /favicon.ico [GET] [in /home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
   File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "/home/test/microblog/app/errors/handlers.py", line 7, in not_found_error
+    return render_template('404.html'),404
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 404.html
+2020-07-25 14:14:23,689 ERROR: Exception on /login [GET] [in /home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
   File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/test/microblog/app/routes.py", line 217, in reset_password
-    form = ResetPasswordForm()
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask_wtf/form.py", line 87, in __init__
-    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/form.py", line 268, in __init__
-    super(Form, self).__init__(self._unbound_fields, meta=meta_obj, prefix=prefix)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/form.py", line 51, in __init__
-    field = meta.bind_field(self, unbound_field, options)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/meta.py", line 27, in bind_field
-    return unbound_field.bind(form=form, **options)
-  File "/home/test/microblog/venv/lib/python3.7/site-packages/wtforms/fields/core.py", line 376, in bind
-    return self.field_class(*self.args, **kw)
-TypeError: __init__() got an unexpected keyword argument 'validator'
-2020-07-23 16:47:54,109 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
-2020-07-23 16:50:25,823 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
-2020-07-23 17:02:20,983 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:53]
-2020-07-23 17:38:15,795 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:58]
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "/home/test/microblog/app/errors/handlers.py", line 7, in not_found_error
+    return render_template('404.html'),404
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 404.html
+2020-07-25 14:14:24,510 ERROR: Exception on /favicon.ico [GET] [in /home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "/home/test/microblog/app/errors/handlers.py", line 7, in not_found_error
+    return render_template('404.html'),404
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/test/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 404.html
+2020-07-25 14:23:07,932 INFO: Microblog Startup [in /home/test/microblog/app/__init__.py:79]

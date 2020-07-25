@@ -4,8 +4,8 @@ from flask_login import UserMixin
 from hashlib import md5
 from time import time
 import jwt
-from app import app,db,login
-
+from app import db,login
+from flask import current_app
 
 # 表内的2个实例都是关联到同一个类，被称为自引用表，这里没和user，posts表一样声明成模型  因为这是一个除了外键没有其他数据的辅助表，所以我创建它的时候没有关联到模型类。
 
@@ -31,10 +31,13 @@ class User(UserMixin,db.Model):
 # lazy和backref中的lazy类似，只不过当前的这个是应用于左侧实体，backref中的是应用于右侧实体
     
     followed = db.relationship(
-        'User', secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+        'User', secondary = followers,
+        primaryjoin = (followers.c.follower_id == id),
+        secondaryjoin = (followers.c.followed_id == id),
+        backref = db.backref('followers', lazy = 'dynamic'), lazy = 'dynamic')
+    
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
 
 #   重用append和remove方法，is_following来确认操作两者当前关系是否成立,self.followed即为followed数据库
     def follow(self, user):
@@ -75,7 +78,7 @@ class User(UserMixin,db.Model):
     def get_reset_password_token(self, expires_in = 600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
-            app.config['SECRET_KEY'], algorithm = 'HS256').decode('utf-8')
+            current_app.config['SECRET_KEY'], algorithm = 'HS256').decode('utf-8')
     
     
     #静态方法可以直接从类外调用     
@@ -83,16 +86,13 @@ class User(UserMixin,db.Model):
     def verify_reset_password_token(token):
         try:
             #解码该token，过期或者出错就引发异常             
-            id = jwt.decode(token, app.config['SECRET_KEY'], algorithms = ['HS256'])['reset_password']
+            id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms = ['HS256'])['reset_password']
         except:
             return
         return User.query.get(id)
         
         
         
-    def __repr__(self):
-        return '<User {}>'.format(self.username)    
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
